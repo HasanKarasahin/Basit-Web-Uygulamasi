@@ -48,12 +48,12 @@ class Ogrenci{
 function ogrenciListener(){
 
     var ref = db.ref("Ogrenci");
-    var sayac=1;
     ref.on('value',gotData,errData) 
 
     function gotData(data){
         
         tbl.innerHTML="";
+		var sayac=1;
         data.forEach(element => {
             console.log(element.val()._isim);
             addRow(element,sayac++);
