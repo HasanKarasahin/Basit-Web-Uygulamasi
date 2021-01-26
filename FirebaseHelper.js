@@ -15,17 +15,36 @@ db = firebase.database();
 
 function ogrenciEkle(){
 
-    var frm_ogr_isim= document.getElementById("frm_ogr_isim");
-    var frm_ogr_soyisim=document.getElementById("frm_ogr_soyisim");
+    let frm_ogr_isim= isEmpty(getValueWithId("frm_ogr_isim"));
+    let frm_ogr_soyisim=isEmpty(getValueWithId("frm_ogr_soyisim"));
 
-    var ogrenci1=new Ogrenci(frm_ogr_isim.value,frm_ogr_soyisim.value);
+    if(frm_ogr_isim && frm_ogr_soyisim){
+        
+        let ogrenci1=new Ogrenci(frm_ogr_isim,frm_ogr_soyisim);
 
-    var key = db.ref().child("Ogrenci").push().key;
+        let key = db.ref().child("Ogrenci").push().key;
+    
+        db.ref("Ogrenci/"+key).set(ogrenci1);
 
-    db.ref("Ogrenci/"+key).set(ogrenci1);
-
-    frm_ogr_isim.value="";
-    frm_ogr_soyisim.value="";
+        if($('.alert').hasClass('alert-success')){
+            let count = parseInt($('.alert').attr("data-add-count"));
+            $('.alert').text('Veri eklendi x'+count);
+            $('.alert').attr("data-add-count",count+1);
+        }else{
+            $('.alert').removeClass('alert-danger')
+            .addClass('alert-success')
+            .text("Veri eklendi")
+            .attr("data-add-count",2);
+        }
+        
+       
+    }else{
+        $('.alert').removeClass('alert-success')
+        .addClass('alert-danger')
+        .text("Veriler Boş olamaz.")
+        .show();
+    }
+    
 }
 
 var tbl=document.getElementById("myTable");
@@ -69,9 +88,9 @@ function ogrenciListener(){
 
 function addRow(element,sayac){
 
-   
-
     var tr = tbl.insertRow();
+    //TO-DO sayac yerine ogrenci_id gelicek
+    tr.setAttribute("data-id",sayac);
 
     var tdSira=tr.insertCell();
     var tdIsim=tr.insertCell();

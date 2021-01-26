@@ -31,3 +31,31 @@ function addRow(){
     table.appendChild(tr);
 
 }
+
+function getValueWithId(id){
+return document.getElementById(id).value;
+}
+
+function isEmpty(value){
+    return value || false;
+}
+
+$('#exampleModal').on('hidden.bs.modal', function (e) {
+    $('.alert').removeClass('alert-danger')
+    .removeClass('alert-success')
+    .text("");
+  });
+
+  $(".table").on("click", "tr[data-id]", function(e) { 
+
+        if($(this).hasClass('selected-tr')){
+            $(this).removeClass('selected-tr');
+        }else{
+            $('.selected-tr').removeClass('selected-tr');
+            $(this).addClass('selected-tr');
+        }
+
+      
+  });
+
+$('.alert').hide();

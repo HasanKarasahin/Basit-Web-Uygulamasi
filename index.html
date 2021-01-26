@@ -1,80 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="p-3 mb-2 bg-primary" onload="ogrenciListener()">
 
+  
 
-        <div class="row">
-                <div class="col-sm-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Ögrenci Ekle</h5>
-                      <p class="card-text">
-
-
-                            <form>
-                                    <div class="form-group">
-                                   
-                                      <input type="email" class="form-control" id="frm_ogr_isim" aria-describedby="emailHelp" placeholder="İsim">
-                                      
-                                    </div>
-                                    <div class="form-group">
-                                  
-                                      <input type="text" class="form-control" id="frm_ogr_soyisim" placeholder="Soyisim">
-                                    </div>
-                                    
-                                  </form>
+  <div class="form-group">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="margin-bottom: 5px;border-radius: 5px;">Ekle</button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="margin-bottom: 5px;border-radius: 5px;" disabled>Düzenle</button>
+    <input type="text" class="form-control" id="myInput" placeholder="Arama" style="width: 250px;float: right;border: 1px solid green;border-radius: 5px;">
+  </div>
 
 
-                      </p>
-                      <a href="#" class="btn btn-primary" onclick="ogrenciEkle()">Kaydet</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Ögrenci Listesi</h5>
-                      <p class="card-text">
+ 
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Ögrenci Listesi</h5>
+          <p class="card-text">
 
 
-                            <table class="table">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">İsim</th>
-                                        <th scope="col">Soyisim</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody id="myTable">
-                                      
-
-                                    </tbody>
-                                  </table>
-
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">İsim</th>
+                <th scope="col">Soyisim</th>
+              </tr>
+            </thead>
+            <tbody id="myTable">
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            </tbody>
+          </table>
 
-<script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.0.0/firebase.js"></script>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<script src="app.js"></script>
-<script src="FirebaseHelper.js"></script>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ögrenci Ekle</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <input type="email" class="form-control" id="frm_ogr_isim" placeholder="İsim" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="frm_ogr_soyisim" placeholder="Soyisim" required>
+            </div>
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="alert" style="padding: 5px;margin:5px;" role="alert"></div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary" onclick="ogrenciEkle()">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase.js"></script>
+
+  <script src="app.js"></script>
+  <script src="FirebaseHelper.js"></script>
 
 </body>
+
 </html>
