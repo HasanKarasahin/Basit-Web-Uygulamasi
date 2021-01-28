@@ -1,8 +1,9 @@
 table>tbody>tr:hover{
-    background-color: aqua;
+    opacity: 0.5;
+    background-color:rgb(255, 248, 220);
     cursor:pointer ;
 }
 
 .selected-tr{
-    background-color: burlywood;
+    background-color: rgb(255, 248, 207);
 }

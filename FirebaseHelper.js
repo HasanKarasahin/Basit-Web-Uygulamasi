@@ -74,7 +74,7 @@ function ogrenciListener(){
         tbl.innerHTML="";
 		var sayac=1;
         data.forEach(element => {
-            console.log(element.val()._isim);
+            console.log(element.ref.path.pieces_[1]);
             addRow(element,sayac++);
         });
 
@@ -90,7 +90,8 @@ function addRow(element,sayac){
 
     var tr = tbl.insertRow();
     //TO-DO sayac yerine ogrenci_id gelicek
-    tr.setAttribute("data-id",sayac);
+    ref=element.ref.path.pieces_[1]
+    tr.setAttribute("data-id",ref);
 
     var tdSira=tr.insertCell();
     var tdIsim=tr.insertCell();
